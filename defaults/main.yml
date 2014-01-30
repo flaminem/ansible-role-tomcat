@@ -3,8 +3,8 @@ tomcat_version: 7
 
 tomcat_roles: ["manager-gui","manager-script"]
 tomcat_users:
-  - { name="johndoe", password="changeMe1234", roles="manager-gui" }
-  - { name="automation", password="changeMe1234", roles="manager-script" }
+  - { name: "johndoe", password: "changeMe1234", roles: "manager-gui" }
+  - { name: "automation", password: "changeMe1234", roles: "manager-script" }
 
 tomcat_conf_dir: "/etc/tomcat{{tomcat_version}}"
 

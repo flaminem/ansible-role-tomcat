@@ -6,12 +6,12 @@
 
  - name: ensure tomcat are configured
    template: src=server.xml.j2 dest={{tomcat_conf_dir}}/server.xml mode=0640 owner=tomcat{{tomcat_version}} group=tomcat{{tomcat_version}}
-   notify: reload tomcat
+   notify: restart tomcat
    tags: [configuration,tomcat]
 
  - name: ensure users and role are configured
    template: src=tomcat-users.xml.j2 dest={{tomcat_conf_dir}}/tomcat-users.xml mode=0640 owner=tomcat{{tomcat_version}} group=tomcat{{tomcat_version}}
-   notify: reload tomcat
+   notify: restart tomcat
    tags: [configuration,tomcat]
 
  - name: ensure tomcat is running

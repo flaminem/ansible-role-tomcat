@@ -7,3 +7,6 @@ tomcat_users:
   - { name="automation", password="changeMe1234", roles="manager-script" }
 
 tomcat_conf_dir: "/etc/tomcat{{tomcat_version}}"
+
+tomcat_port: '8080'
+tomcat_listen_ip: 'localhost'

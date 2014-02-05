@@ -74,6 +74,12 @@
                connectionTimeout="20000"
                URIEncoding="UTF-8"
                redirectPort="8443" />
+{% if tomcat_second_listen_ip %}               
+    <Connector address="{{tomcat_second_listen_ip}}" port="{{tomcat_port}}" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               URIEncoding="UTF-8"
+               redirectPort="8443" />
+{% endif %}
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"

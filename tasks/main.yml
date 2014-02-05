@@ -1,19 +1,20 @@
 ---
  - name: ensure tomcat is installed
-   apt:  pkg=tomcat{{tomcat_version}},tomcat{{tomcat_version}}-admin state=installed
+   apt:  pkg=tomcat{{tomcat_version}},tomcat{{tomcat_version}}-admin state={{tomcat_pkg_state}}
    when: ansible_os_family == 'Debian'
    tags: [packages,tomcat]
 
  - name: ensure tomcat are configured
-   template: src=server.xml.j2 dest={{tomcat_conf_dir}}/server.xml mode=0640 owner=tomcat{{tomcat_version}} group=tomcat{{tomcat_version}}
+   template: src=server.xml.j2 dest={{tomcat_conf_dir}}/server.xml mode=0600 owner={{tomcat_owner}} group={{tomcat_group}}
    notify: restart tomcat
    tags: [configuration,tomcat]
 
  - name: ensure users and role are configured
-   template: src=tomcat-users.xml.j2 dest={{tomcat_conf_dir}}/tomcat-users.xml mode=0640 owner=tomcat{{tomcat_version}} group=tomcat{{tomcat_version}}
+   template: src=tomcat-users.xml.j2 dest={{tomcat_conf_dir}}/tomcat-users.xml mode=0600 owner={{tomcat_owner}} group={{tomcat_group}}
    notify: restart tomcat
    tags: [configuration,tomcat]
 
- - name: ensure tomcat is running
-   service: name=tomcat{{tomcat_version}} state=running enabled=yes
+ - name: ensure tomcat service state
+   service: name=tomcat{{tomcat_version}} state={{tomcat_service_state}} enabled={{tomcat_service_enabled}}
+   when: "tomcat_service_state != 'stopped' and tomcat_service_enabled != 'no'"
    tags: [service,tomcat]

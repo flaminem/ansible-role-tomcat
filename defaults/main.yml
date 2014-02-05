@@ -10,3 +10,7 @@ tomcat_conf_dir: "/etc/tomcat{{tomcat_version}}"
 
 tomcat_port: '8080'
 tomcat_listen_ip: 'localhost'
+
+tomcat_state: 'present'
+tomcat_service_state: 'started'
+tomcat_service_enabled: 'yes'

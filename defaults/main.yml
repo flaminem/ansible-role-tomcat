@@ -7,6 +7,7 @@ tomcat_users:
   - { name: "automation", password: "changeMe1234", roles: "manager-script" }
 
 tomcat_conf_dir: "/etc/tomcat{{tomcat_version}}"
+tomcat_home_dir: "/usr/share/tomcat{{tomcat_version}}"
 
 tomcat_port: '8080'
 tomcat_listen_ip: 'localhost'
@@ -17,3 +18,12 @@ tomcat_service_enabled: 'yes'
 
 tomcat_owner: "tomcat{{tomcat_version}}"
 tomcat_group: "tomcat{{tomcat_version}}"
+
+tomcat_jmx_enabled: true
+tomcat_jmx_registry_port: 37565
+tomcat_jmx_server_port: 38975
+tomcat_jmx_authenticate: true
+tomcat_jmx_bind_id: 127.0.0.1
+tomcat_jmx_user:
+   - { name: "monitorRole", password: "changeMe123456", role: "readonly" }
+   - { name: "controlRole", password: "changeMePlease123456", role: "readwrite" }

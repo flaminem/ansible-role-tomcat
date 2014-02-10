@@ -14,6 +14,10 @@
    notify: restart tomcat
    tags: [configuration,tomcat]
 
+ - include: jmx.yml
+   when: "tomcat_jmx_enabled == true"
+   tags: [configuration,tomcat]
+
  - name: ensure tomcat service state
    service: name=tomcat{{tomcat_version}} state={{tomcat_service_state}} enabled={{tomcat_service_enabled}}
    when: "tomcat_service_state != 'stopped' and tomcat_service_enabled != 'no'"

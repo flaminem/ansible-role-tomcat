@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 export CATALINA_OPTS="-Dcom.sun.management.jmxremote
-  -Dcom.sun.management.jmxremote.port={{tomcat_jmx_registry_port}}
+{% if not tomcat_jmx_use_fixed_port %}-Dcom.sun.management.jmxremote.port={{tomcat_jmx_registry_port}} {% endif %}
   -Dcom.sun.management.jmxremote.local.only=false
   -Dcom.sun.management.jmxremote.ssl=false
   -Djava.rmi.server.hostname={{tomcat_jmx_bind_id}}
